@@ -19,4 +19,5 @@
     ```
 * braces is not file name globbing, it's used to extends all values in braces
 * **shopt** could change the behavior of BASH
+
 ## Quotes and Escaping
