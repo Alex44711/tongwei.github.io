@@ -83,4 +83,5 @@
     # equals
     $ echo string | command  
   ```
+
 ## Bash Variables
