@@ -83,6 +83,7 @@
     # equals
     $ echo string | command  
   ```
+
 ## Bash Variables
 * Usage of **{}**
   ```console
@@ -157,4 +158,5 @@
   $ echo $v1,$v2
   2,1
   ```
+
 ## Operation String
