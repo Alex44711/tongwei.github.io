@@ -83,5 +83,78 @@
     # equals
     $ echo string | command  
   ```
-
 ## Bash Variables
+* Usage of **{}**
+  ```console
+  $ a=foo
+  $ echo $a_file
+  $ echo ${a}_file
+  foo_file
+  ```
+* If the value is a variable, **!** could be used
+  ```console
+  $ myvar=USER
+  $ echo ${!myvar}
+  alex
+  ```
+* **export** is able to export variable to child bash session, update child bash variable will not update father variable
+  ```console
+  $ export foo=bar
+  $ bash
+  $ echo $foo
+  bar
+  $ foo=baz
+  $ exit
+  $ echo $foo
+  bar
+  ```
+* Special variables
+  ```console
+  # Previous command exit status code
+  $ echo $?
+  1
+  # Current shell process ID
+  $ echo $$
+  # Last parameters of previous command
+  $ echo $USER
+  alex
+  $ echo $_
+  alex
+  # Previous backend async cpmmand processID
+  $ firefox &
+  [1] 11064
+  $ echo $!
+  11064
+  # Current bash name
+  $ echo $0
+  /bin/bash
+  # Current Shell startup parameter
+  $ echo $-
+  himBHs
+  ```
+* Default value of variables  
+  `${varname:-word}`  
+  If variable **varname** exist and not empty, return it's value or return **word**  
+  `${varname:=word}`  
+  Same as first one, one more thing is set up the value of variable  
+  `${varname:+word}`  
+  If variable name exist and not empty, then execute **word** command. Used to test if a variable exist  
+  `${varname:?message}`  
+  If **varname** exist and not empty, return it's value or print out **varname: message** and stop bash running. Used to prevent variable to run with define.
+* **declare** commands  
+  -a：declare array variable  
+  -f：output all func defination  
+  -F：output all func name  
+  -i：declare int variable  
+  -l：declare variable as lowcase  
+  -p：check variable info  
+  -r：declare read-only variable  
+  -u：declare variable as uppercase  
+  -x：export as environment variables  
+* **let** command
+  ```console
+  $ let "v1 = 1" "v2 = v1++"
+  $ echo $v1,$v2
+  2,1
+  ```
+## Operation String
