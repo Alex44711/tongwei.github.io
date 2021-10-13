@@ -160,3 +160,59 @@
   ```
 
 ## Operation String
+* Length of String  
+  **${varname}**
+* Sub string  
+  Grammer: `${varname:offset:length}`
+* Search and replace
+  ```console
+  $ testPath=/home/cc/book/long.file.name
+  # Shortest match
+  $ echo ${testPath#/*/}
+  cc/book/long.file.name
+  # Longest match
+  $ echo ${testPath##/*/}
+  long.file.name
+  # delete file directory part, only keep file name
+  $ echo ${path##*/}
+  long.file.name
+  ```
+* Replace grammer
+  ${variable/#pattern/string}
+  ```console
+  $ test=JPG.JPG
+  $ echo ${foo/#JPG/jpg}
+  jpg.JPG
+  ```
+* Tail match of string
+  ```console
+  $ path=/home/cam/book/long.file.name
+  $ echo ${path%.*}
+  /home/cam/book/long.file
+  $ echo ${path%%.*}
+  /home/cam/book/long
+  # Replace with tail match
+  ${variable/%pattern/string}
+  ```
+* Any place matching  
+  `${variable/pattern/string}`
+  `${variable//pattern/string}`  
+  All are longest mathching, first one only replace first match, second will replace all matched pattern
+* Replace ":" to new line
+  ```console
+  $ echo -e ${PATH//:/'\n'}
+  /usr/local/sbin
+  /usr/local/bin
+  /usr/sbin
+  ...
+  ```
+* Change lower/upper case
+  ```console
+  # Convert to Upper case
+  ${varname^^}
+  # Convert to Lower case
+  ${varname,,}
+  ```
+
+## Arithmetic Operation
+
