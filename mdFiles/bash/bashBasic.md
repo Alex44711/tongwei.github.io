@@ -215,4 +215,42 @@
   ```
 
 ## Arithmetic Operation
+* ((...)) run integer arithmetic operation grammer 
+  ```console
+  $ ((foo = 5 + 5))
+  $ echo $foo
+  10
+  $ echo $((2 + 2))
+  4
+  ```
+* If using string in **$((...))**, bash will treat it as a variable name. If no same name variable, the value of that is empty. And empty value will be **0**
+  ```console
+  $ echo $(( "hello" + 2))
+  2
+  $ echo $(( "hello" * 2))
+  0
+  $ foo=hello
+  $ hello=3
+  $ echo $(( foo + 2 ))
+  5
+  ```
+* **$((...))** support bit operation, example:  
+  **<<**  
+  **>>**  
+  ...  
+* **$((...))** support logical operation, example:  
+  **!**  
+  **<=**  
+  ...
+* **$((...))** support assignment operation, example:  
+  `parameter += value --- parameter = parameter + value`   
+  ...
+* Evulation operation ","
+  ```console
+  $ echo $((foo = 1 + 2, 3 * 4))
+  12
+  $ echo $foo
+  3
+  ```
 
+## Line Operation
