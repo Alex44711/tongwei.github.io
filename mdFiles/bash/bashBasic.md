@@ -305,7 +305,7 @@
 
   ---
    * **Alt + .**: insert the last work of previous  command.
-  ---  
+  ---
 
 ## Directory Stack 
  
