@@ -245,7 +245,7 @@
 * **$((...))** support assignment operation, example:  
   `parameter += value --- parameter = parameter + value`   
   ...
-* Evulation operation ","
+* Evaluation operation ","
   ```console
   $ echo $((foo = 1 + 2, 3 * 4))
   12
@@ -254,3 +254,57 @@
   ```
 
 ## Line Operation
+* Cursor movement
+  * **Ctrl + a: move to line start**
+  * **Ctrl + b: move to line start one char**
+  * **Ctrl + e: move to line end**
+  * **Ctrl + f: move to line end one char**
+  * **Alt + f: move to the end of current word**
+  * **Alt + b: move to the start of current word**
+* Edit command
+  * **Ctrl + d: delete char of cursor (delete)**
+  * **Ctrl + w: delete the word before cursor**
+  * **Ctrl + t: char switch before and after cursor**
+  * **Alt + t: word switch before and after cursor**
+  * **Alt + l: word lowcase after cursor**
+  * **Alt + u: word uppercase after cursor**
+  * **Ctrl + k: cut after cursor string**
+  * **Ctrl + u: cut before cursor string**
+  * **Ctrl + y: paste string in cursor**
+  * **Alt + d: cur after cursor word**
+  * **Alt + Backspace: cut before cursor word**
+* Auto complete
+* Operation history  
+  `$ echo $HISTFILE`  
+  `/home/me/.bash_history`  
+  ```console
+  $ !e
+  $ echo Goodbye
+  Goodbye
+  ```
+  **!e** means find the operation history, latest one start with **e** and execute.
+* History command
+  ```console
+  $ export HISTTIMEFORMAT='%F %T  '
+  $ history
+  1  2013-06-09 10:40:12   cat /etc/issue
+  2  2013-06-09 10:40:12   clear
+  ```
+  Above code, **%F** means **%Y - %m - %d**, **%T** means **%H : %M : %S**.  
+  As long as **HISTTIMEFORMAT** is set up, will save timestamp in **.bash_history** file.
+* Set history operation number  
+  `$ export HISTSIZE=10000`  
+* If **HISTSIZE=0** write into **~/.bashrc** file, then will not keep the use's operation history. If write into **/etc/profile**, the whole system will not keep operation history.
+* Set which command will not be write into history  
+  `export HISTIGNORE='pwd:ls:exit'`  
+* `$ !8` to execute the command line number 8
+* Related commands
+  * **!$**: represent the last parameter of last command
+  * **!***: represent all parameters of last command
+  * **Ctrl + [**: represent ESC
+  ---
+   * **Alt + .**: insert the last work of previous  command.
+  ---  
+
+## Directory Stack 
+ 
