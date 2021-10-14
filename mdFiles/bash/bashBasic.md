@@ -302,10 +302,7 @@
   * **!$**: represent the last parameter of last command
   * **!**: represent all parameters of last command
   * **Ctrl + [**: represent ESC
-
-  ---
-   * **Alt + .**: insert the last work of previous  command.
-  ---
+  > **Alt + .**: insert the last work of previous  command.
 
 ## Directory Stack 
  
