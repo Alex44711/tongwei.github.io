@@ -302,7 +302,54 @@
   * **!$**: represent the last parameter of last command
   * **!***: represent all parameters of last command
   * **Ctrl + [**: represent ESC
-  > **Alt + .**: insert the last work of previous  command.
+  > **Alt + .**: insert the last word of previous  command.
 
-## Directory Stack 
- 
+## Directory Stack
+* **cd -**
+  * return to previous directory
+* **pushd, popd**  
+  Used to remember multiple layer directories
+  * `$ pushd dirname`  
+
+  First time use **pushd** command, put the current directory into stack, then put the directory that you need to go into stack (top).  
+* When **pod** command does not have any parameters, will pop the record at the stack top, then enter the new directory
+  ```console
+  $ pwd
+  /home/user
+  $ pushd ~/learning
+  ~/learning /home/user
+  $ pushd ~/general
+  ~/general ~/learning /home/user
+  $ popd
+  # Enter ~/learning directory
+  $ popd
+  # Enter /home/user directory
+  $ popd
+  # directory not change, current stack is empty
+  ```
+* **-n** parameter  
+  **-n** parameter not only pop top record, not change directory.  
+* Int parameter  
+  Will not change directory
+  ```console
+  # Count from top, move the third one to top
+  $ pushd +3
+  # Delete the one count from top
+  $ popd +3
+  # Count from bottom of stack
+  $ popd -3
+  # pod +0 delete first directory, pod +1 delete second directory
+  ```
+* Directory parameter  
+  **pushd** can accept a directory as parameter, then put this dir to the top of stack, then enter this directory.  
+* **dirs** command can show the content of current directory. Usually to check result of **pushd** and **popd**
+  ```console
+  -c : clean stack
+  -l : no tilde, print full directory
+  -p : each line for each item in stack
+  -v : each line for each item, show location number
+  +N : Nth item from stack top
+  -N : Nth item from stack bottom
+  ```
+
+## Get started with scripts
