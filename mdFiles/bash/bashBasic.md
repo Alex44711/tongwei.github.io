@@ -353,3 +353,41 @@
   ```
 
 ## Get started with scripts
+* With **Shebang** line, bash file could execute with **./script.sh** directly.  
+`#!/bin/bash`  
+* If don't want to define full directory. Put **~/bin** into $PATH. Then just need to enter script file name to execute bash.
+  ```console
+  export PATH=$PAHT:~/bin
+  $ source ~/.bashrc
+  $ script.sh
+  ```
+* **#!/usr/bin/env NAME**: let Shell find the first matched **NAME** in env variables. If you don't know a specific directory, it's useful.
+* Script parameters
+  * **$1 ~ $9**: script's first to nine parameters
+  * **$#**: total number of parameters
+  * **$@**: All parameters, space interval
+  * **$**: All parameters, interval **\$IFS**. Default is space.
+* If script parameters more than 9, then the 10th parameter could be referred by **${10}**.
+* For example:
+  * ```command -o foo bar```
+  * -o is $1, foo is $2, bar is $3
+* ```console
+  #!/bin/bash
+  # script.sh
+  echo "All parameters：" $@
+  echo "Parameter numbers：" $#
+  echo '$0 = ' $0
+  echo '$1 = ' $1
+  echo '$2 = ' $2
+  echo '$3 = ' $3
+
+  #Result
+  $ ./script.sh a b c
+  All parameters：a b c
+  Parameter numbers：3
+  $0 =  script.sh
+  $1 =  a
+  $2 =  b
+  $3 =  c
+  ```
+
