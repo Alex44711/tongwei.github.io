@@ -391,3 +391,72 @@
   $3 =  c
   ```
 
+* Simple way for **source**  
+  `$. .bashrc`
+## Read command
+* **Read** command get the input from user.
+  ```console
+  echo -n "Input text > "
+  read text
+  echo "Your input: $text"
+  ```
+* Print each line of file
+  ```console
+  #!/bin/bash
+
+  filename='/etc/hosts'
+
+  while read myline
+  do
+    echo "$myline"
+  done < $filename
+  ```
+* **-a** parameter take the user input into an array.
+* **-n** parameter only take substring of input.
+* **-e** enable auto complete in file directory.
+
+## Condition Statement
+* **test** command used to test if condition is true.
+* Shell provide and (-a), or (-o), no(!) to connect test condition. Priority ! > -a > -o
+  ```console
+  cd /bin
+  if test -e ./notFile -o -e ./bash
+  then
+      echo 'At least one file!'
+  else
+      echo 'Both not exist!'
+  fi
+  ```
+* one last statement in if statement works  
+  `$ if false; true; then echo 'hello world'; fi`  
+  `hello world`
+* **Test** Command
+  ```console
+  #1
+  [ expression ]
+  #2
+  test expression
+  #3 Support regular expression
+  [[ expression ]]
+  ```
+* **[]** is a simple way of **test** command. Note: Need space before and after brackets
+* **test** internal **<, >**, it has to quote by quotation or use backward slash.
+* **test** internal using parentheses, it has to qupte by quotation or escape
+  ```console
+  if ((3 > 2)); then
+    echo "true"
+  fi
+  true
+  ```
+* **case** could use all wildcard
+  ```console
+  a): match a
+  a|b): match a or b
+  [[:alpha:]])：match single char。
+  ???)：match three chars word。
+  *.txt)：match file ending with .txt。
+  *)：match any input
+  ```
+* Add **;;&** in the end of conditation statement. Will not exit **case**. Keep going next conditon.
+
+## Loop statement
