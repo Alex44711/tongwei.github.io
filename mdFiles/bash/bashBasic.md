@@ -460,3 +460,86 @@
 * Add **;;&** in the end of conditation statement. Will not exit **case**. Keep going next conditon.
 
 ## Loop statement
+* while condition  
+  ```console
+  while condition; do
+    commands
+  done
+  ```
+* while codition part could execute any number of commands, but the result only depends on the result of last command.
+* Until condition
+  If the conditio does not satisfy, keep execute the commands
+* for...in Loop
+  ```console
+  for variable in list
+  do
+    commands
+  done
+  # If also support grammer
+  for (( i=0; i<5; i++ )); do
+    echo $i
+  done
+  ```
+* **breah** and **continue** can be used to jump out loop.
+* Select Command
+  ```console
+  select name
+  [in list]
+  do
+    commands
+  done
+  ```
+* Example for **select**
+  ```console
+  select brand in Samsung Sony iphone   symphony Walton
+  do
+    echo "You have chosen $brand"
+  done
+  ```
+* Exmaple for **select** and **case**
+  ```console
+  echo "Which Operating System do you like? "
+  select os in Ubuntu LinuxMint Windows8  Windows10 WindowsXP
+  do
+    case $os in
+      "Ubuntu"|"LinuxMint")
+        echo "I also use $os."
+      ;;
+      "Windows8" | "Windows10" |  "WindowsXP")
+        echo "Why don't you try Linux?"
+      ;;
+      *)
+        echo "Invalid entry."
+        break
+      ;;
+    esac
+  done
+  ```
+
+## Bash Function
+* If function and alias has same name, alias will be executed first.
+  ```console
+  # Function defination
+  fn() {
+    # code
+  }
+
+  function fn() {
+    # code
+  }
+
+  # Date example
+  today() {
+    echo -n "Today's date is: "
+    date +"%A, %B %-d, %Y"
+  }
+  - before d means remove unnecessary 0
+  https://www.runoob.com/linux/linux-comm-date.html
+  ```
+* Delete a function  
+  `unset -f functionName`
+* Check all defined function  
+  * all function: `declare -f`
+  * without body: `declare -F`
+  * single function: `declare -f functionName`
+
