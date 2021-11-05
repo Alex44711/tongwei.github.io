@@ -542,4 +542,24 @@
   * all function: `declare -f`
   * without body: `declare -F`
   * single function: `declare -f functionName`
+* Parameter variables
+  ```console
+  function alice {
+    echo "alice: $@"
+    echo "$0: $1 $2 $3 $4"
+    echo "$# arguments"
 
+  }
+
+  alice in wonderland
+  ```
+* date example
+  ```console
+  function log_msg {
+    echo "[`date '+ %F %T'` ]: $@"
+  }
+  ```
+* variables inside of function belongs to global variables.
+  * **local** can be used to define local var inside of function
+
+## Array
