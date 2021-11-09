@@ -563,3 +563,83 @@
   * **local** can be used to define local var inside of function
 
 ## Array
+* Create Array
+  ```console
+  #1
+  ARRAY[INDEX]=value
+  #2
+  ARRAY=(value1 value2 ... valueN)
+  #3
+  array=([2]=c [0]=a [1]=b)
+  ```
+* Read Array
+  ```console
+  #1
+  echo ${array[i]}
+  #2 All items
+  foo=(a b c d e f)
+  echo ${foo[@]}
+  #3 Traverse
+  for i in "${name[@]}"; do
+    echo $i
+  done
+  #4 Copy an array
+  hobbies=( "${activities[@]}" )
+  ```
+* Length of Array
+  ```console
+  #1
+  ${#array[*]}
+  ${#array[@]}
+  #2
+  a[100]=foo
+  $ echo ${#a[*]}
+  1
+  $ echo ${a[100]}
+  3
+  ```
+* Get Array index
+  **\${!array[@]}** and **\${!array[*]}**
+  ```console
+  #1
+  $ arr=([5]=a [9]=b [23]=c)
+  $ echo ${!arr[@]}
+  5 9 23
+
+  #2 Get subArray
+  $ food=( apples bananas cucumbers dates eggs fajitas grapes )
+  $ echo ${food[@]:1:1}
+  bananas
+  $ echo ${food[@]:1:3}
+  bananas cucumbers dates
+  ```
+* Append Array member
+  ```console
+  $ foo=(a b c)
+  $ echo ${foo[@]}
+  a b c
+  $ foo+=(d e f)
+  $ echo ${foo[@]}
+  a b c d e f
+  ```
+* Delete Array member
+  ```console
+  $ foo=(a b c d e f)
+  $ echo ${foo[@]}
+  a b c d e f
+
+  $ unset foo[2]
+  $ echo ${foo[@]}
+  a b d e f
+  # It just was hidden, not deleted
+
+  # unset ArrayName could clean whole array
+  ```
+## **Set** and **shopt** command
+* **set -u** if encounter no-exist variables, scirpt return error
+* **set -x** print out the command use to echo some messages
+* **set -e** scipt stops when any error happens
+* When expected command return non-zero, could turn off **set +e** then turn if on **set -e**
+* **set -eo pipefail** as long as one child command failed, whole pipe command failed
+
+## Script debug
