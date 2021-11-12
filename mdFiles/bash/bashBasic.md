@@ -643,3 +643,130 @@
 * **set -eo pipefail** as long as one child command failed, whole pipe command failed
 
 ## Script debug
+* Below scirpt: if **cd** command failed, **rm** will be a problem
+  ```console
+  dir_name=/path/not/exist
+  cd $dir_name
+  rm *
+
+  # If should be like this, judge if $dir_name exist, then execute following commands
+  [[ -d $dir_name ]] && cd $dir_name && rm *
+
+  # Dry run
+  [[ -d $dir_name ]] && cd $dir_name && echo rm *
+  ```
+* Parameters used to debug
+  * $LINENO wil return line number
+  * $FUNCNAME 
+    ```console
+    #!/bin/bash
+
+    function func1()
+    {
+      echo "func1: FUNCNAME0 is ${FUNCNAME[0]}"
+      echo "func1: FUNCNAME1 is ${FUNCNAME[1]}"
+      echo "func1: FUNCNAME2 is ${FUNCNAME[2]}"
+      func2
+    }
+
+    function func2()
+    {
+      echo "func2: FUNCNAME0 is ${FUNCNAME[0]}"
+      echo "func2: FUNCNAME1 is ${FUNCNAME[1]}"
+      echo "func2: FUNCNAME2 is ${FUNCNAME[2]}"
+    }
+
+    func1
+
+    # Result
+    $ ./test.sh
+    func1: FUNCNAME0 is func1
+    func1: FUNCNAME1 is main
+    func1: FUNCNAME2 is
+    func2: FUNCNAME0 is func2
+    func2: FUNCNAME1 is func1
+    func2: FUNCNAME2 is main
+    ```
+* $BASH_SOURCE return an array includes script invoke stack
+* $BASH_LINENO return an array includes invoke line number
+
+## **mktemp** command, **trap** command
+* Safety create temp file
+  * **/tmp** folder is read/writeable by everyone 
+* temp file should follow rules:
+  * check if file already exist
+  * make sure file createLogin session will run a whole system env **startup**/etc/profile success all user's global configuration **scripts**/etc/profile.d
+   * have to has access limitation
+  * creatan unpredictable file name
+  * when exist script, delete temp file
+* **mktemp** will create a temp file, only user has limitation
+* **trap** command coudl reponse system signal
+
+## Bash startup environment
+* Login session will run a whole system env startup
+  * **/etc/profile** all user's global configuration scripts
+  * **/etc/profile.d** all .sh script in this folder
+  * **~/.bash_profile** user's personal config script, it exist, then it's an end
+  * **~/.bash_login** if above one not exist, then execute this one
+  * **~/.profile** if above two not exist, then try to execute this one
+* bash login command force execute login session
+* Non-login session
+  * Enter system, manual create bash session like  
+    * `bash` in command line
+    * Following scripts will be executed:
+      * **/etc/bash.bashrc** for all users
+      * **~/.bashrc** only for current user
+    * Execute script will not call `~/.bashrc`
+* **~/.bash_logout** will be called when session exit
+* **Startup options** -- `$ bash -n scriptname`
+  * **-n** not execute script, just check grammer
+  * **-v** print command before output the script result
+  * **-x** print command before execute it
+* **Bash** allow user define their own shortcut
+  * Global keyboard binding file is **/etc/inputrc**, user can create their own binding file **.inputrc** file. If user define this file, need to add this line below, make sure global binding will not be missed.  
+  `$include /etc/inputrc`
+  * Example:
+    * **"\C-t":"pwd\n"** means bind **Ctrl+t** with **pwd** command
+
+## Command reminder
+* Environment variables PS1
+* Customized command reminder:
+  * Updated PS1 need to put into .bashrc
+  * If need to see the updated reminder, just execute:
+    * `$ source ~/.bashrc`
+* Reminder defination:
+    ```console
+    \a：Bell ringing
+    \d：For example: "Mon May 26"
+    \h：Hostname
+    \H：Full desk name
+    \j：Current Shell session command number
+    \l：Current terminal device name
+    \n：
+    \r：A new line
+    \s：Shell name
+    \t：24 hours:minutes:seconds
+    \T：12 hours current time
+    \@：12 hours AM/PM
+    \A：24 hours hours:minutes
+    \u：current username
+    \v：Shell version number
+    \V：Shell edition and release version
+    \w：Current work directory
+    \W：Current folder name
+    \!：Current command in history commands
+    \#：Current shell session command numbers
+    \$：User $ sign root # sign
+    \[：Start sign
+    \]：End sign
+    ```
+* For example:
+  * **[\u@\h \W]\$** means **[user@host ~]$**
+* Color
+  * Bash allow customized reminder color
+* **PS1='\[\033[0;31m\]<\u@\h \W>\$\[\033[00m\]'** Reminder will be red, following text is normal text
+* Background color could be customized
+* Sys env PS2, PS3, PS4
+  * PS2: new line reminder default **>**
+  * PS3: select command reminder
+  * PS4: default **+**, for bash parameter **-x**
