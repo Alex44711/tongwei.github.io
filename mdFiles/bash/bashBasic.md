@@ -412,9 +412,9 @@
   $2 =  b
   $3 =  c
   ```
-
 * Simple way for **source**  
   `$. .bashrc`
+  
 ## Read command
 * **Read** command get the input from user.
   ```console
@@ -657,6 +657,7 @@
 
   # unset ArrayName could clean whole array
   ```
+
 ## **Set** and **shopt** command
 * **set -u** if encounter no-exist variables, scirpt return error
 * **set -x** print out the command use to echo some messages
