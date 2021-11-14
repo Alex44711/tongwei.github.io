@@ -1,5 +1,27 @@
 [BASH learning](https://wangdoc.com/bash/expansion.html)
-# Notes
+
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+  - [Globbing](#globbing)
+  - [Quotes and Escaping](#quotes-and-escaping)
+  - [Bash Variables](#bash-variables)
+  - [Operation String](#operation-string)
+  - [Arithmetic Operation](#arithmetic-operation)
+  - [Line Operation](#line-operation)
+  - [Directory Stack](#directory-stack)
+  - [Get started with scripts](#get-started-with-scripts)
+  - [script.sh](#scriptsh)
+  - [Condition Statement](#condition-statement)
+  - [Loop statement](#loop-statement)
+  - [Bash Function](#bash-function)
+  - [Array](#array)
+  - [**Set** and **shopt** command](#set-and-shopt-command)
+  - [Script debug](#script-debug)
+  - [**mktemp** command, **trap** command](#mktemp-command-trap-command)
+  - [Bash startup environment](#bash-startup-environment)
+  - [Command reminder](#command-reminder)
+
+
 ## Globbing
 * **~user** to user's main directory
 * **?** means any single char
