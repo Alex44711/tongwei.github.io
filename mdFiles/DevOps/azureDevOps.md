@@ -86,3 +86,19 @@
   --query "[].{hostName: defaultHostName, state: state}" \
   --output table
   ```
+## Functional Test in Azure Pipelines
+* **Smoke testing** verifies the most basic functionality of your application or service.
+* **Unit testing** verifies the most fundamental components of your program or library.
+* **Integration testing** verifies that multiple software components work together to form a complete system.
+* A **regression** occurs when existing behavior either changes or breaks after you add or change a feature.
+* **Sanity testing** involves testing each major component of a piece of software to verify that the software appears to be working and can undergo more thorough testing.
+* **User interface (UI) testing** verifies the behavior of an application's user interface.
+* **Usability testing** is a form of manual testing that verifies an application's behavior from the user's perspective.
+* **User acceptance testing (UAT)**, like usability testing, focuses on an application's behavior from the user's perspective. Unlike acceptance testing, UAT is typically done by real end users.
+
+## UI Tests
+* Use the correct locators first.
+## nonfunctional tests in Azure Pipelines
+* Run automated load tests by using Apache JMeter, a form of nonfunctional testing, in Azure Pipelines.
+## Deployment patterns
+* A **deployment pattern** is an automated way to smoothly roll out new application features to your users.
