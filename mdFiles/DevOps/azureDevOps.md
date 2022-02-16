@@ -102,3 +102,17 @@
 * Run automated load tests by using Apache JMeter, a form of nonfunctional testing, in Azure Pipelines.
 ## Deployment patterns
 * A **deployment pattern** is an automated way to smoothly roll out new application features to your users.
+* Deployment patterns
+  * Blue-green deployment
+  * Canary releases
+  * Feature toggles
+  * Dark launches
+  * A/B testing
+  * Progressive-exposure deployment
+## Automate multi-container Kubernetes deployments with Azure Pipelines
+* The **KubernetesManifest@0** task is designed to manage all of the mainstream deployment operations required for Kubernetes.
+
+# Next steps
+* Kubernetes
+* Terraform
+* Design patterns
